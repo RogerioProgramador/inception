@@ -2,7 +2,7 @@
 FROM debian:bullseye
 
 # Realizando update e upgrade(se necessario) das dependencias
-RUN apt update && apt upgrade
+RUN apt update && apt upgrade -y
 
 # Instalando mariadb
 RUN apt-get install mariadb-server -y

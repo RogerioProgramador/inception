@@ -1,7 +1,10 @@
 #!/bin/sh
 
 set -x
-sleep 10
+sleep 20
+
+# Mudar para o diretório do WordPress
+cd /var/www/wordpress
 
 # Configuracao do banco de dados
 if [ -e wp-config.php ]; then
@@ -36,6 +39,10 @@ else
 
     wp config set WORDPRESS_DEBUG false --allow-root
 fi
+
+# Instalar e mudar o idioma para inglês
+wp language core install en_US --allow-root
+wp site switch-language en_US --allow-root
 
 sed -ie 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 0.0.0.0:9000/g' \
 /etc/php/7.4/fpm/pool.d/www.conf
